@@ -741,6 +741,8 @@ def public_query_generator(
     
     # --- Returning Clause ---
     if returning and query_type in ["INSERT", "UPDATE", "UPSERT", "DELETE"]:
+        if isinstance(returning, list):
+            returning = ", ".join(returning)
         query += f" RETURNING {returning}"
 
     # --- Safety Check ---
